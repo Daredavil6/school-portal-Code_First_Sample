@@ -13,7 +13,7 @@ namespace SchoolPortal.Common.Data.Seed
     {
         public static async Task SeedRolesAndAdminAsync(IServiceProvider serviceProvider)
         {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             // Seed Roles
@@ -22,7 +22,7 @@ namespace SchoolPortal.Common.Data.Seed
             {
                 if (!await roleManager.RoleExistsAsync(roleName))
                 {
-                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                    await roleManager.CreateAsync(new IdentityRole<Guid>(roleName));
                 }
             }
 
@@ -43,6 +43,7 @@ namespace SchoolPortal.Common.Data.Seed
                 {
                     user = new ApplicationUser
                     {
+                        Id = Guid.NewGuid(),
                         UserName = email,
                         Email = email,
                         EmailConfirmed = true,

@@ -20,7 +20,13 @@ namespace SchoolPortal.Common.Data.Seed
                 return; // Database has been seeded
             }
 
-            var defaultUserId = new Guid("368BD1DF-42D6-4F05-9CA0-8DF22191B917"); // Default system user
+            // Get the admin user's ID
+            var adminUser = await context.Users.FirstOrDefaultAsync(u => u.Email == "admin@school.com");
+            if (adminUser == null)
+            {
+                throw new Exception("Admin user not found. Please ensure IdentityDataSeeder has run first.");
+            }
+
             var currentDate = DateTime.UtcNow;
 
             var countries = new[]
@@ -31,7 +37,7 @@ namespace SchoolPortal.Common.Data.Seed
                     Name = "United States",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedBy = defaultUserId,
+                    CreatedBy = adminUser.Id,
                     CreatedDate = currentDate,
                     Status = EntityStatus.Created,
                     StatusMessage = "Initial Seed"
@@ -42,7 +48,7 @@ namespace SchoolPortal.Common.Data.Seed
                     Name = "United Kingdom",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedBy = defaultUserId,
+                    CreatedBy = adminUser.Id,
                     CreatedDate = currentDate,
                     Status = EntityStatus.Created,
                     StatusMessage = "Initial Seed"
@@ -53,7 +59,7 @@ namespace SchoolPortal.Common.Data.Seed
                     Name = "Canada",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedBy = defaultUserId,
+                    CreatedBy = adminUser.Id,
                     CreatedDate = currentDate,
                     Status = EntityStatus.Created,
                     StatusMessage = "Initial Seed"
@@ -64,7 +70,7 @@ namespace SchoolPortal.Common.Data.Seed
                     Name = "Australia",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedBy = defaultUserId,
+                    CreatedBy = adminUser.Id,
                     CreatedDate = currentDate,
                     Status = EntityStatus.Created,
                     StatusMessage = "Initial Seed"
@@ -75,7 +81,7 @@ namespace SchoolPortal.Common.Data.Seed
                     Name = "India",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedBy = defaultUserId,
+                    CreatedBy = adminUser.Id,
                     CreatedDate = currentDate,
                     Status = EntityStatus.Created,
                     StatusMessage = "Initial Seed"

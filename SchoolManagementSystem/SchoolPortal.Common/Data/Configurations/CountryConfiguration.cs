@@ -4,18 +4,30 @@ using SchoolPortal.Common.Models;
 
 namespace SchoolPortal.Common.Data.Configurations
 {
-    public partial class CountryConfiguration : IEntityTypeConfiguration<Country>
+    public partial class CountryConfiguration : BaseEntityConfiguration<Country>
     {
-        public void Configure(EntityTypeBuilder<Country> entity)
+        public override void Configure(EntityTypeBuilder<Country> entity)
         {
-            entity.ToTable("Countries");
+            base.Configure(entity);
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd();
+            entity.ToTable("Countries");
 
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            // Configure relationships with ApplicationUser
+            entity.HasOne<ApplicationUser>()
+                .WithMany()
+                .HasForeignKey(e => e.CreatedBy)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
+            entity.HasOne<ApplicationUser>()
+                .WithMany()
+                .HasForeignKey(e => e.ModifiedBy)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired(false);
 
             OnConfigurePartial(entity);
         }
