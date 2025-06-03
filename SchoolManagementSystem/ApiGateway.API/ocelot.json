@@ -1,0 +1,155 @@
+{
+	"Routes": [
+		{
+			"DownstreamPathTemplate": "/api/v1/country/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 59142
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/location/country/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "Country"
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/state/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5020
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/location/state/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "State"
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/city/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5104
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/location/city/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "City"
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/company/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5176
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/company/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "Company"
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/userdetails/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5044
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/userdetails/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "UserDetails"
+		},
+		{
+			"DownstreamPathTemplate": "/api/v1/school/{everything}",
+			"DownstreamScheme": "http",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "localhost",
+					"Port": 5126
+				}
+			],
+			"UpstreamPathTemplate": "/api/v1/school/{everything}",
+			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+			"SwaggerKey": "School"
+		}
+	],
+	"SwaggerEndPoints": [
+		{
+			"Key": "Country",
+			"Config": [
+				{
+					"Name": "Country API",
+					"Version": "v1",
+					"Url": "http://localhost:59142/swagger/v1/swagger.json",
+					"Description": "API for managing country information including country codes, names, and related data"
+				}
+			]
+		},
+		{
+			"Key": "State",
+			"Config": [
+				{
+					"Name": "State API",
+					"Version": "v1",
+					"Url": "http://localhost:5020/swagger/v1/swagger.json",
+					"Description": "API for managing state/province information within countries"
+				}
+			]
+		},
+		{
+			"Key": "City",
+			"Config": [
+				{
+					"Name": "City API",
+					"Version": "v1",
+					"Url": "http://localhost:5104/swagger/v1/swagger.json",
+					"Description": "API for managing city information including city names, postal codes, and state associations"
+				}
+			]
+		},
+		{
+			"Key": "Company",
+			"Config": [
+				{
+					"Name": "Company API",
+					"Version": "v1",
+					"Url": "http://localhost:5176/swagger/v1/swagger.json",
+					"Description": "API for managing company information including company details, branches, and organizational structure"
+				}
+			]
+		},
+		{
+			"Key": "UserDetails",
+			"Config": [
+				{
+					"Name": "UserDetails API",
+					"Version": "v1",
+					"Url": "http://localhost:5044/swagger/v1/swagger.json",
+					"Description": "API for managing user information including profiles, roles, and authentication details"
+				}
+			]
+		},
+		{
+			"Key": "School",
+			"Config": [
+				{
+					"Name": "School API",
+					"Version": "v1",
+					"Url": "http://localhost:5126/swagger/v1/swagger.json",
+					"Description": "API for managing school information including school details, classes, students, and academic records"
+				}
+			]
+		}
+	],
+	"GlobalConfiguration": {
+		"BaseUrl": "http://localhost:5000",
+		"RequestIdKey": "RequestId",
+		"DownstreamScheme": "http"
+	}
+}

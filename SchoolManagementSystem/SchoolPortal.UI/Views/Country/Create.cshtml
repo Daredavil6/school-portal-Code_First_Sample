@@ -1,0 +1,72 @@
+@model SchoolPortal.Common.DTOs.CreateCountryDto
+
+@{
+    ViewData["Title"] = "Create Country";
+}
+
+<div class="page-header">
+    <h1>
+        Create Country
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            Add a new country
+        </small>
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Country Information</h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <form asp-action="Create" class="form-horizontal" role="form">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" asp-for="Name"></label>
+                            <div class="col-sm-9">
+                                <div class="clearfix">
+                                    <input asp-for="Name" class="col-xs-10 col-sm-5" placeholder="Enter country name" />
+                                </div>
+                                <div class="clearfix">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" asp-for="IsActive"></label>
+                            <div class="col-sm-9">
+                                <label class="inline">
+                                    <input asp-for="IsActive" class="ace ace-switch ace-switch-3" type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="clearfix form-actions">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-info">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Create
+                                </button>
+                                &nbsp; &nbsp; &nbsp;
+                                <a asp-action="Index" class="btn">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

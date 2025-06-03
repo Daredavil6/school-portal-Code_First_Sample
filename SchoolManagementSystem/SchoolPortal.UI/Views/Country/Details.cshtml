@@ -1,0 +1,67 @@
+@model SchoolPortal.Common.DTOs.UpdateCountryDto
+
+@{
+    ViewData["Title"] = "Country Details";
+}
+
+<div class="page-header">
+    <h1>
+        Country Details
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            View country information
+        </small>
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title">Country Information</h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">@Html.DisplayNameFor(model => model.Name)</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static">@Html.DisplayFor(model => model.Name)</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">@Html.DisplayNameFor(model => model.IsActive)</label>
+                            <div class="col-sm-9">
+                                <p class="form-control-static">
+                                    @if (Model.IsActive)
+                                    {
+                                        <span class="label label-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger">Inactive</span>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="clearfix form-actions">
+                            <div class="col-md-offset-3 col-md-9">
+                                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info">
+                                    <i class="ace-icon fa fa-pencil bigger-110"></i>
+                                    Edit
+                                </a>
+                                &nbsp; &nbsp; &nbsp;
+                                <a asp-action="Index" class="btn">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

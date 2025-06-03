@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[SMSTaskHistory] (
+    [Id]                     UNIQUEIDENTIFIER NOT NULL,
+    [TaskId]                 UNIQUEIDENTIFIER NOT NULL,
+    [SentDate]               DATETIME         NOT NULL,
+    [NotificationReveiverId] UNIQUEIDENTIFIER NOT NULL,
+    [NotificationReceiver]   VARCHAR (50)     NULL,
+    [SendType]               VARCHAR (10)     NULL,
+    [StudentGUID]            UNIQUEIDENTIFIER NULL,
+    [ParentId]               UNIQUEIDENTIFIER NULL,
+    [TeacherId]              UNIQUEIDENTIFIER NULL,
+    [Email]                  VARCHAR (150)    NULL,
+    [Phone]                  VARCHAR (50)     NULL,
+    [Description]            VARCHAR (250)    NULL,
+    [CompanyId]              UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]               UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]               BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]              BIT              DEFAULT ((0)) NOT NULL,
+    [CreatedBy]              UNIQUEIDENTIFIER NULL,
+    [CreatedDate]            DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]             UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]           DATETIME         NULL,
+    [Status]                 VARCHAR (50)     DEFAULT ('INC') NULL,
+    [StatusMessage]          NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_SMSTaskHistory] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

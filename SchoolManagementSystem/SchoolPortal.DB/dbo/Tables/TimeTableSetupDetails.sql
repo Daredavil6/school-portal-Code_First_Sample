@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[TimeTableSetupDetails] (
+    [Id]                     UNIQUEIDENTIFIER NOT NULL,
+    [SchoolStartTime]        TIME (0)         NOT NULL,
+    [SchoolEndTime]          TIME (0)         NOT NULL,
+    [PeriodStartTime]        TIME (0)         NOT NULL,
+    [TotalPeriods]           INT              NOT NULL,
+    [PeriodDuration]         INT              NOT NULL,
+    [RecessDuration]         INT              NOT NULL,
+    [RecessAfterPeriod]      INT              NOT NULL,
+    [FruitRecessDuration]    INT              NULL,
+    [FruitRecessAfterPeriod] INT              NULL,
+    [SessionId]              UNIQUEIDENTIFIER NOT NULL,
+    [CompanyId]              UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]               UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]               BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]              BIT              DEFAULT ((0)) NOT NULL,
+    [CreatedBy]              UNIQUEIDENTIFIER NULL,
+    [CreatedDate]            DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]             UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]           DATETIME         NULL,
+    [Status]                 VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage]          NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_TimeTableSetupDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

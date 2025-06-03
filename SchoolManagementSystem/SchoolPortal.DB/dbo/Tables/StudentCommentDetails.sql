@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[StudentCommentDetails] (
+    [Id]               UNIQUEIDENTIFIER NOT NULL,
+    [StudentGUID]      UNIQUEIDENTIFIER NOT NULL,
+    [ClassId]          UNIQUEIDENTIFIER NOT NULL,
+    [SectionId]        UNIQUEIDENTIFIER NOT NULL,
+    [SessionId]        UNIQUEIDENTIFIER NOT NULL,
+    [DescriptionQtr1]  VARCHAR (500)    NULL,
+    [DescriptionQtr2]  VARCHAR (500)    NULL,
+    [DescriptionQtr3]  VARCHAR (500)    NULL,
+    [DescriptionSA1]   VARCHAR (500)    NULL,
+    [DescriptionSA2]   VARCHAR (500)    NULL,
+    [DescriptionFinal] VARCHAR (500)    NULL,
+    [CompanyId]        UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]         UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]         BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]        BIT              DEFAULT ((0)) NOT NULL,
+    [CreatedBy]        UNIQUEIDENTIFIER NULL,
+    [CreatedDate]      DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]       UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]     DATETIME         NULL,
+    [Status]           VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage]    NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_StudentCommentDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

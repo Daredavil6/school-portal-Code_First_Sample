@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[PublisherMaster] (
+    [Id]            UNIQUEIDENTIFIER NOT NULL,
+    [PublisherName] VARCHAR (150)    NULL,
+    [Description]   VARCHAR (250)    NULL,
+    [Address]       VARCHAR (250)    NULL,
+    [CityId]        UNIQUEIDENTIFIER NOT NULL,
+    [StateId]       UNIQUEIDENTIFIER NOT NULL,
+    [CountryId]     UNIQUEIDENTIFIER NOT NULL,
+    [ZipCode]       VARCHAR (50)     NULL,
+    [Phone]         VARCHAR (50)     NULL,
+    [Mobile]        VARCHAR (50)     NULL,
+    [Email]         VARCHAR (100)    NULL,
+    [CompanyId]     UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]      UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]      BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]     BIT              DEFAULT ((0)) NOT NULL,
+    [CreatedBy]     UNIQUEIDENTIFIER NULL,
+    [CreatedDate]   DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]    UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]  DATETIME         NULL,
+    [Status]        VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage] NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_PublisherMaster] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

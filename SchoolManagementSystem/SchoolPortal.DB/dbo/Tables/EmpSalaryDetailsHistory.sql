@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[EmpSalaryDetailsHistory] (
+    [Id]                    UNIQUEIDENTIFIER NOT NULL,
+    [SalaryMasterId]        UNIQUEIDENTIFIER NOT NULL,
+    [SalaryHistoryMasterId] UNIQUEIDENTIFIER NOT NULL,
+    [DesigGradeDetailsId]   UNIQUEIDENTIFIER NOT NULL,
+    [Value]                 DECIMAL (18, 2)  NULL,
+    [SalaryTypeId]          UNIQUEIDENTIFIER NOT NULL,
+    [IsDeduction]           BIT              NOT NULL,
+    [SalaryCode]            VARCHAR (10)     NULL,
+    [SalaryDescription]     VARCHAR (100)    NULL,
+    [Amount]                DECIMAL (18, 2)  NULL,
+    [IsSalaryHead]          BIT              NOT NULL,
+    [CompanyId]             UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]              UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]              BIT              NOT NULL,
+    [IsDeleted]             BIT              NOT NULL,
+    [CreatedBy]             UNIQUEIDENTIFIER NULL,
+    [CreatedDate]           DATETIME         NOT NULL,
+    [ModifiedBy]            UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]          DATETIME         NULL,
+    [Status]                VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage]         NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_EmpSalaryDetailsHistory] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[BookTransactionDetails] (
+    [Id]                    UNIQUEIDENTIFIER NOT NULL,
+    [BookId]                UNIQUEIDENTIFIER NOT NULL,
+    [IssueDate]             DATETIME         NOT NULL,
+    [IssueDays]             INT              NOT NULL,
+    [ReturnDueDate]         DATETIME         NOT NULL,
+    [ActualReturnDate]      DATETIME         NULL,
+    [LateDays]              INT              NULL,
+    [FinePerDay]            DECIMAL (18, 2)  NULL,
+    [IsFineApplicable]      BIT              NULL,
+    [IsFinePaid]            BIT              NULL,
+    [BookTransactionTypeId] UNIQUEIDENTIFIER NULL,
+    [ClassMasterId]         UNIQUEIDENTIFIER NULL,
+    [SectionMasterId]       UNIQUEIDENTIFIER NULL,
+    [StudentGuid]           UNIQUEIDENTIFIER NULL,
+    [IsActive]              BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]             BIT              DEFAULT ((0)) NOT NULL,
+    [CompanyId]             UNIQUEIDENTIFIER NOT NULL,
+    [SchoolId]              UNIQUEIDENTIFIER NOT NULL,
+    [CreatedBy]             UNIQUEIDENTIFIER NULL,
+    [CreatedDate]           DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]            UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]          DATETIME         NULL,
+    [Status]                VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage]         NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_BookTransactionDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

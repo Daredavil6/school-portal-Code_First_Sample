@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[VisitorMaster] (
+    [Id]                         UNIQUEIDENTIFIER NOT NULL,
+    [VisitorMasterName]          VARCHAR (100)    NULL,
+    [VisitorMasterDate]          DATETIME         NOT NULL,
+    [TimeOfArrival]              TIME (0)         NOT NULL,
+    [TimeOfExit]                 TIME (0)         NOT NULL,
+    [Purpose]                    VARCHAR (150)    NULL,
+    [ContactPerson]              VARCHAR (100)    NULL,
+    [VisitorMasterAddress]       VARCHAR (150)    NULL,
+    [VisitorMasterCityId]        UNIQUEIDENTIFIER NOT NULL,
+    [VisitorMasterStateId]       UNIQUEIDENTIFIER NOT NULL,
+    [VisitorMasterCountryId]     UNIQUEIDENTIFIER NOT NULL,
+    [VisitorMasterZipCode]       VARCHAR (150)    NULL,
+    [VisitorMasterContactNumber] VARCHAR (50)     NULL,
+    [VisitorMasterIsActive]      BIT              NULL,
+    [VisitorMasterCompanyId]     UNIQUEIDENTIFIER NOT NULL,
+    [VisitorMasterSchoolId]      UNIQUEIDENTIFIER NOT NULL,
+    [IsActive]                   BIT              DEFAULT ((1)) NOT NULL,
+    [IsDeleted]                  BIT              DEFAULT ((0)) NOT NULL,
+    [CreatedBy]                  UNIQUEIDENTIFIER NULL,
+    [CreatedDate]                DATETIME         DEFAULT (getdate()) NOT NULL,
+    [ModifiedBy]                 UNIQUEIDENTIFIER NULL,
+    [ModifiedDate]               DATETIME         NULL,
+    [Status]                     VARCHAR (10)     DEFAULT ('INC') NULL,
+    [StatusMessage]              NVARCHAR (255)   NULL,
+    CONSTRAINT [PK_VisitorMaster\] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SchoolPortal.DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{447ddddd-446f-422a-aa7c-266757ff2076}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SchoolPortal.DB</RootNamespace>
+    <AssemblyName>SchoolPortal.DB</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\EmpSalaryDetails.sql" />
+    <Build Include="dbo\Tables\StudentGradeDetailsHistory.sql" />
+    <Build Include="dbo\Tables\EmpSalaryDetailsHistory.sql" />
+    <Build Include="dbo\Tables\StudentMarksDetails.sql" />
+    <Build Include="dbo\Tables\EmpSalaryMaster.sql" />
+    <Build Include="dbo\Tables\StudentMarksDetailsHistory.sql" />
+    <Build Include="dbo\Tables\EmpSalaryMasterHistory.sql" />
+    <Build Include="dbo\Tables\StudentMaster.sql" />
+    <Build Include="dbo\Tables\EmpSalaryStructureDetails.sql" />
+    <Build Include="dbo\Tables\StudentMasterHistory.sql" />
+    <Build Include="dbo\Tables\EmpSalaryStructureDetailsHistory.sql" />
+    <Build Include="dbo\Tables\StudentReportCardDetails.sql" />
+    <Build Include="dbo\Tables\EmpTypeMaster.sql" />
+    <Build Include="dbo\Tables\StudentReportCardDetailsHistory.sql" />
+    <Build Include="dbo\Tables\ExamCategoryMaster.sql" />
+    <Build Include="dbo\Tables\StudentReportCardMaster.sql" />
+    <Build Include="dbo\Tables\ExamUnitMaster.sql" />
+    <Build Include="dbo\Tables\StudentReportCardMasterHistory.sql" />
+    <Build Include="dbo\Tables\ExpenseCategoryMaster.sql" />
+    <Build Include="dbo\Tables\SubjectCategoryDetails.sql" />
+    <Build Include="dbo\Tables\FeeClassDetails.sql" />
+    <Build Include="dbo\Tables\SubjectCategoryDetailsHistory.sql" />
+    <Build Include="dbo\Tables\FeeClassDetailsHistory.sql" />
+    <Build Include="dbo\Tables\SubjectMaster.sql" />
+    <Build Include="dbo\Tables\FeesCategoryMaster.sql" />
+    <Build Include="dbo\Tables\SupplierMaster.sql" />
+    <Build Include="dbo\Tables\FeesDiscountCategoryMaster.sql" />
+    <Build Include="dbo\Tables\TeacherClassDetails.sql" />
+    <Build Include="dbo\Tables\GenderMaster.sql" />
+    <Build Include="dbo\Tables\TeacherDocumentDetails.sql" />
+    <Build Include="dbo\Tables\GradeMaster.sql" />
+    <Build Include="dbo\Tables\TeacherMaster.sql" />
+    <Build Include="dbo\Tables\HolidayClassDetails.sql" />
+    <Build Include="dbo\Tables\TeacherQualificationDetails.sql" />
+    <Build Include="dbo\Tables\HolidayDeptDetails.sql" />
+    <Build Include="dbo\Tables\TeacherSectionDetails.sql" />
+    <Build Include="dbo\Tables\HolidayMaster.sql" />
+    <Build Include="dbo\Tables\TeacherSubjectDetails.sql" />
+    <Build Include="dbo\Tables\HolidayTypeMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableClassPeriodDetails.sql" />
+    <Build Include="dbo\Tables\InventoryMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableClassPeriodDetailsHistory.sql" />
+    <Build Include="dbo\Tables\ItemLocationMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableDetailsHistory.sql" />
+    <Build Include="dbo\Tables\ItemMaster.sql" />
+    <Build Include="dbo\Tables\TimeTablePeriodMaster.sql" />
+    <Build Include="dbo\Tables\ItemTypeMaster.sql" />
+    <Build Include="dbo\Tables\TimeTablePeriodMasterHistory.sql" />
+    <Build Include="dbo\Tables\LeaveStatusMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableSessions.sql" />
+    <Build Include="dbo\Tables\LeaveTypeMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableSetupDetails.sql" />
+    <Build Include="dbo\Tables\LocationMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableSetupDetailsHistory.sql" />
+    <Build Include="dbo\Tables\MarksGradeMaster.sql" />
+    <Build Include="dbo\Tables\TimeTableSubstitutionDetailsHistory.sql" />
+    <Build Include="dbo\Tables\NotificationReceiverMaster.sql" />
+    <Build Include="dbo\Tables\AssesmentMaster.sql" />
+    <Build Include="dbo\Tables\UserDetails.sql" />
+    <Build Include="dbo\Tables\ParentMaster.sql" />
+    <Build Include="dbo\Tables\AttendanceReasonMaster.sql" />
+    <Build Include="dbo\Tables\VehicleExpenseDetails.sql" />
+    <Build Include="dbo\Tables\PaymentModeMaster.sql" />
+    <Build Include="dbo\Tables\AuthorMaster.sql" />
+    <Build Include="dbo\Tables\VehicleMaster.sql" />
+    <Build Include="dbo\Tables\Privileges.sql" />
+    <Build Include="dbo\Tables\BillDetails.sql" />
+    <Build Include="dbo\Tables\VendorMaster.sql" />
+    <Build Include="dbo\Tables\ProfessionMaster.sql" />
+    <Build Include="dbo\Tables\BillMaster.sql" />
+    <Build Include="dbo\Tables\VisitorMaster.sql" />
+    <Build Include="dbo\Tables\PublisherMaster.sql" />
+    <Build Include="dbo\Tables\BloodGroupMaster.sql" />
+    <Build Include="dbo\Tables\VoucherMaster.sql" />
+    <Build Include="dbo\Tables\QualificationMaster.sql" />
+    <Build Include="dbo\Tables\BookCategoryMaster.sql" />
+    <Build Include="dbo\Tables\RegistrationMaster.sql" />
+    <Build Include="dbo\Tables\BookMaster.sql" />
+    <Build Include="dbo\Tables\ReligionMaster.sql" />
+    <Build Include="dbo\Tables\BookTransactionDetails.sql" />
+    <Build Include="dbo\Tables\RoleMaster.sql" />
+    <Build Include="dbo\Tables\BookTransactionType.sql" />
+    <Build Include="dbo\Tables\RolePrivileges.sql" />
+    <Build Include="dbo\Tables\BookTypeMaster.sql" />
+    <Build Include="dbo\Tables\RouteDetails.sql" />
+    <Build Include="dbo\Tables\CategoryMaster.sql" />
+    <Build Include="dbo\Tables\RouteMaster.sql" />
+    <Build Include="dbo\Tables\CityMaster.sql" />
+    <Build Include="dbo\Tables\RouteStopDetails.sql" />
+    <Build Include="dbo\Tables\ClassMaster.sql" />
+    <Build Include="dbo\Tables\SalaryDesigGradeDetails.sql" />
+    <Build Include="dbo\Tables\ClassScholasticDetail.sql" />
+    <Build Include="dbo\Tables\SalaryDesigGradeDetailsHistory.sql" />
+    <Build Include="dbo\Tables\ClassScholasticDetailHistory.sql" />
+    <Build Include="dbo\Tables\SalaryHeadMaster.sql" />
+    <Build Include="dbo\Tables\ClassSectionDetail.sql" />
+    <Build Include="dbo\Tables\ScholasticMaster.sql" />
+    <Build Include="dbo\Tables\ClassSMSTasksDetails.sql" />
+    <Build Include="dbo\Tables\ScholasticMasterHistory.sql" />
+    <Build Include="dbo\Tables\ClassSubjectDetail.sql" />
+    <Build Include="dbo\Tables\ScholasticUnitDetail.sql" />
+    <Build Include="dbo\Tables\ClassSubjectDetailHistory.sql" />
+    <Build Include="dbo\Tables\ScholasticUnitDetailHistory.sql" />
+    <Build Include="dbo\Tables\CleanerMaster.sql" />
+    <Build Include="dbo\Tables\SchoolContactMaster.sql" />
+    <Build Include="dbo\Tables\CompanyMaster.sql" />
+    <Build Include="dbo\Tables\SchoolMaster.sql" />
+    <Build Include="dbo\Tables\CountryMaster.sql" />
+    <Build Include="dbo\Tables\SectionMaster.sql" />
+    <Build Include="dbo\Tables\DeptDesigDetails.sql" />
+    <Build Include="dbo\Tables\SessionMaster.sql" />
+    <Build Include="dbo\Tables\DeptMaster.sql" />
+    <Build Include="dbo\Tables\SMSTask.sql" />
+    <Build Include="dbo\Tables\DesigGradeDetails.sql" />
+    <Build Include="dbo\Tables\SMSTaskHistory.sql" />
+    <Build Include="dbo\Tables\DesigMaster.sql" />
+    <Build Include="dbo\Tables\SMSTaskSchedule.sql" />
+    <Build Include="dbo\Tables\DriverMaster.sql" />
+    <Build Include="dbo\Tables\SMSTaskSmtpDetails.sql" />
+    <Build Include="dbo\Tables\EmpAttendanceDetails.sql" />
+    <Build Include="dbo\Tables\SMSTaskStatusMaster.sql" />
+    <Build Include="dbo\Tables\EmpAttendanceDetailsHistory.sql" />
+    <Build Include="dbo\Tables\SmtpDetails.sql" />
+    <Build Include="dbo\Tables\EmpCatLeaveDetailsHistory.sql" />
+    <Build Include="dbo\Tables\StateMaster.sql" />
+    <Build Include="dbo\Tables\EmpDocumentDetails.sql" />
+    <Build Include="dbo\Tables\StudentAchievements.sql" />
+    <Build Include="dbo\Tables\EmpLeaveAvailDetails.sql" />
+    <Build Include="dbo\Tables\StudentAttendanceDetails.sql" />
+    <Build Include="dbo\Tables\EmpLeaveDetails.sql" />
+    <Build Include="dbo\Tables\StudentAttendanceDetailsHistory.sql" />
+    <Build Include="dbo\Tables\EmpLeaveDetailsHistory.sql" />
+    <Build Include="dbo\Tables\StudentCommentDetails.sql" />
+    <Build Include="dbo\Tables\EmployeeCategoryMaster.sql" />
+    <Build Include="dbo\Tables\StudentCommentDetailsHistory.sql" />
+    <Build Include="dbo\Tables\EmployeeCatLeaveDetails.sql" />
+    <Build Include="dbo\Tables\StudentFeeDetails.sql" />
+    <Build Include="dbo\Tables\EmpMaster.sql" />
+    <Build Include="dbo\Tables\StudentFeeDetailsHistory.sql" />
+    <Build Include="dbo\Tables\EmpProfQualIdetails.sql" />
+    <Build Include="dbo\Tables\StudentGradeDetails.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteCountryMaster.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetAllCountries.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetAllCountries_Paged.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetCountryById.sql" />
+    <Build Include="dbo\Stored Procedures\sp_InsertCountryMaster.sql" />
+    <Build Include="dbo\Stored Procedures\sp_UpdateCountryMaster.sql" />
+  </ItemGroup>
+</Project>
