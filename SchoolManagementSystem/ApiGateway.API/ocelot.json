@@ -14,69 +14,17 @@
 			"SwaggerKey": "Country"
 		},
 		{
-			"DownstreamPathTemplate": "/api/v1/state/{everything}",
+			"DownstreamPathTemplate": "/api/v1/account/{everything}",
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [
 				{
 					"Host": "localhost",
-					"Port": 5020
+					"Port": 59143
 				}
 			],
-			"UpstreamPathTemplate": "/api/v1/location/state/{everything}",
+			"UpstreamPathTemplate": "/api/v1/account/{everything}",
 			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-			"SwaggerKey": "State"
-		},
-		{
-			"DownstreamPathTemplate": "/api/v1/city/{everything}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "localhost",
-					"Port": 5104
-				}
-			],
-			"UpstreamPathTemplate": "/api/v1/location/city/{everything}",
-			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-			"SwaggerKey": "City"
-		},
-		{
-			"DownstreamPathTemplate": "/api/v1/company/{everything}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "localhost",
-					"Port": 5176
-				}
-			],
-			"UpstreamPathTemplate": "/api/v1/company/{everything}",
-			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-			"SwaggerKey": "Company"
-		},
-		{
-			"DownstreamPathTemplate": "/api/v1/userdetails/{everything}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "localhost",
-					"Port": 5044
-				}
-			],
-			"UpstreamPathTemplate": "/api/v1/userdetails/{everything}",
-			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-			"SwaggerKey": "UserDetails"
-		},
-		{
-			"DownstreamPathTemplate": "/api/v1/school/{everything}",
-			"DownstreamScheme": "http",
-			"DownstreamHostAndPorts": [
-				{
-					"Host": "localhost",
-					"Port": 5126
-				}
-			],
-			"UpstreamPathTemplate": "/api/v1/school/{everything}",
-			"UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-			"SwaggerKey": "School"
+			"SwaggerKey": "Account"
 		}
 	],
 	"SwaggerEndPoints": [
@@ -92,57 +40,13 @@
 			]
 		},
 		{
-			"Key": "State",
+			"Key": "Account",
 			"Config": [
 				{
-					"Name": "State API",
+					"Name": "Account API",
 					"Version": "v1",
-					"Url": "http://localhost:5020/swagger/v1/swagger.json",
-					"Description": "API for managing state/province information within countries"
-				}
-			]
-		},
-		{
-			"Key": "City",
-			"Config": [
-				{
-					"Name": "City API",
-					"Version": "v1",
-					"Url": "http://localhost:5104/swagger/v1/swagger.json",
-					"Description": "API for managing city information including city names, postal codes, and state associations"
-				}
-			]
-		},
-		{
-			"Key": "Company",
-			"Config": [
-				{
-					"Name": "Company API",
-					"Version": "v1",
-					"Url": "http://localhost:5176/swagger/v1/swagger.json",
-					"Description": "API for managing company information including company details, branches, and organizational structure"
-				}
-			]
-		},
-		{
-			"Key": "UserDetails",
-			"Config": [
-				{
-					"Name": "UserDetails API",
-					"Version": "v1",
-					"Url": "http://localhost:5044/swagger/v1/swagger.json",
-					"Description": "API for managing user information including profiles, roles, and authentication details"
-				}
-			]
-		},
-		{
-			"Key": "School",
-			"Config": [
-				{
-					"Name": "School API",
-					"Version": "v1",
-					"Url": "http://localhost:5126/swagger/v1/swagger.json",
-					"Description": "API for managing school information including school details, classes, students, and academic records"
+					"Url": "http://localhost:59143/swagger/v1/swagger.json",
+					"Description": "API for managing user authentication, registration, password management, and account settings"
 				}
 			]
 		}

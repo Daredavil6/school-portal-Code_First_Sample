@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryService.API", "..\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolPortal.UI", "..\SchoolPortal.UI\SchoolPortal.UI.csproj", "{F47F9650-37E4-4D45-7038-E950B185629B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.API", "..\UserService.API\UserService.API.csproj", "{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{F47F9650-37E4-4D45-7038-E950B185629B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F47F9650-37E4-4D45-7038-E950B185629B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F47F9650-37E4-4D45-7038-E950B185629B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{D2B5D6F3-26F9-123B-1F6A-110189E980D7} = {A58CFD37-BB4B-488E-8D4B-4D30D64AC41D}
 		{6E45A057-5CDF-F571-254E-EFAF0736F57F} = {A58CFD37-BB4B-488E-8D4B-4D30D64AC41D}
 		{F47F9650-37E4-4D45-7038-E950B185629B} = {052D25A6-5F9A-4E3E-A3CC-A9D380496AF5}
+		{1CE8E085-BF17-FA49-FE16-64FFE53CE8E7} = {A58CFD37-BB4B-488E-8D4B-4D30D64AC41D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {85757512-B348-44C0-8565-290D1B7AD312}
