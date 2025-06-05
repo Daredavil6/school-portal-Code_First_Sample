@@ -11,41 +11,59 @@
 		userName = session?.userDetail?.UserName ?? "User";
 	}
 } *@
-<ul class="nav ace-nav">
-	<li class="light-blue dropdown-modal">
-		<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-			<img class="nav-user-photo" src="~/assets/images/avatars/user.jpg" alt="'s Photo" />
-			<span class="user-info">
-				<small>Welcome,</small>
-				Super Admin
-			</span>
 
-			<i class="ace-icon fa fa-caret-down"></i>
-		</a>
+@{
+	var userName = Context.Request.Cookies["UserName"];
+	var userEmail = Context.Request.Cookies["UserEmail"];
+}
 
-		<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-			<li>
-				<a href="#">
-					<i class="ace-icon fa fa-cog"></i>
-					Settings
-				</a>
-			</li>
+@if (!string.IsNullOrEmpty(userName))
+{
+	<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				<i class="ace-icon fa fa-user"></i>
+				@userName
+				<i class="ace-icon fa fa-angle-down"></i>
+			</a>
 
-			<li>
-				<a href="profile.html">
-					<i class="ace-icon fa fa-user"></i>
-					Profile
-				</a>
-			</li>
+			<ul class="dropdown-menu dropdown-menu-right dropdown-yellow dropdown-caret dropdown-close">
+				<li>
+					<a href="#">
+						<i class="ace-icon fa fa-cog"></i>
+						Settings
+					</a>
+				</li>
 
-			<li class="divider"></li>
+				<li>
+					<a href="#">
+						<i class="ace-icon fa fa-user"></i>
+						Profile
+					</a>
+				</li>
 
-			<li>
-				<a href="@Url.Action("Logout","Login")">
-					<i class="ace-icon fa fa-power-off"></i>
-					Logout
-				</a>
-			</li>
-		</ul>
-	</li>
-</ul>
+				<li class="divider"></li>
+
+				<li>
+					<form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+						<button type="submit" class="btn btn-link navbar-btn navbar-link">
+							<i class="ace-icon fa fa-power-off"></i>
+							Logout
+						</button>
+					</form>
+				</li>
+			</ul>
+		</li>
+	</ul>
+}
+else
+{
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			<a asp-controller="Account" asp-action="Login">
+				<i class="ace-icon fa fa-sign-in"></i>
+				Login
+			</a>
+		</li>
+	</ul>
+}

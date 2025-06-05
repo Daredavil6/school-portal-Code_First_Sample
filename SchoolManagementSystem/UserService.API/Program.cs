@@ -5,6 +5,9 @@ using SchoolPortal.Common.Data;
 using SchoolPortal.Common.Models;
 using SchoolPortal.Common.Mappings;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,16 +76,15 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader());
 });
 
-// Configure Database Settings
-var databaseSettings = builder.Configuration.GetSection("DatabaseSettings").Get<DatabaseSettings>();
-if (databaseSettings == null || string.IsNullOrEmpty(databaseSettings.ConnectionString))
+// Configure DbContext
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrEmpty(connectionString))
 {
-    throw new InvalidOperationException("Database settings not found or connection string is empty.");
+    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 }
 
-// Configure DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(databaseSettings.ConnectionString));
+    options.UseSqlServer(connectionString));
 
 // Configure Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
@@ -107,6 +109,26 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
+
+// Configure JWT Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:SecretKey"])),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        ClockSkew = TimeSpan.Zero
+    };
+});
 
 builder.Services.AddTransient<DbInitializer>();
 

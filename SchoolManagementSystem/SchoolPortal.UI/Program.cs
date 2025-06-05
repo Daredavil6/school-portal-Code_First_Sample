@@ -1,19 +1,58 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System.Net.Http.Headers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using SchoolPortal.UI.Middleware;
+using SchoolPortal.UI.Models;
+using SchoolPortal.UI.Services;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Configure HttpClient for Ocelot API calls
-builder.Services.AddHttpClient("OcelotClient", client =>
+// Add HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
+
+// Register Services
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+// Configure JWT Authentication
+builder.Services.AddAuthentication(options =>
 {
-    client.BaseAddress = new Uri(builder.Configuration["Ocelot:BaseUrl"] ?? "http://localhost:5000");
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:SecretKey"])),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        ClockSkew = TimeSpan.Zero
+    };
 });
 
+// Configure HttpClient for API calls
+builder.Services.AddHttpClient("OcelotClient", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiSettings:BaseUrl"]);
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+});
+
+// Add API settings
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
+
 // Register session services
-builder.Services.AddDistributedMemoryCache(); // Required for session
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(60); // Customize as needed
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -29,16 +68,21 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
-app.UseSession();      // ✅ must be after UseRouting, before endpoints
 
+// Use JWT middleware
+app.UseJwtMiddleware();
+
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();      // ✅ must be after UseRouting, before endpoints
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}")
+    pattern: "{controller=Account}/{action=Login}")
     .WithStaticAssets();
 
 app.Run();

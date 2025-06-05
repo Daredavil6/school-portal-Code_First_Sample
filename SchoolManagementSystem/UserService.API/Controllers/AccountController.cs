@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using SchoolPortal.Common.Models;
 using SchoolPortal.Common.Data;
 using SchoolPortal.Common.DTOs;
-using System.Threading.Tasks;
 using System;
-using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace UserService.API.Controllers
 {
@@ -17,12 +23,42 @@ namespace UserService.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context)
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext context,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _configuration = configuration;
+        }
+
+        private string GenerateJwtToken(ApplicationUser user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim("FirstName", user.FirstName),
+                    new Claim("LastName", user.LastName)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _configuration["JwtSettings:Issuer"],
+                Audience = _configuration["JwtSettings:Audience"]
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         [HttpPost("register")]
@@ -58,28 +94,40 @@ namespace UserService.API.Controllers
         public async Task<IActionResult> Login(LoginDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(new AuthResponse { Success = false, Message = "Invalid model state" });
 
             var user = await _userManager.FindByEmailAsync(dto.Email);
             if (user == null)
-                return Unauthorized(new { message = "Invalid email or password" });
+                return Unauthorized(new AuthResponse { Success = false, Message = "Invalid email or password" });
 
             if (!await _userManager.IsEmailConfirmedAsync(user))
-                return Unauthorized(new { message = "Please confirm your email before logging in" });
+                return Unauthorized(new AuthResponse { Success = false, Message = "Please confirm your email before logging in" });
 
             var result = await _signInManager.PasswordSignInAsync(user, dto.Password, dto.RememberMe, lockoutOnFailure: true);
 
             if (result.Succeeded)
             {
-                return Ok(new { message = "Login successful" });
+                var token = GenerateJwtToken(user);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                return Ok(new AuthResponse
+                {
+                    Success = true,
+                    Token = token,
+                    UserName = $"{user.FirstName} {user.LastName}",
+                    Email = user.Email,
+                    Message = "Login successful",
+                    Roles = roles.ToList(),
+                    ExpiresIn = 7
+                });
             }
             else if (result.IsLockedOut)
             {
-                return Unauthorized(new { message = "Account is locked. Please try again later." });
+                return Unauthorized(new AuthResponse { Success = false, Message = "Account is locked. Please try again later." });
             }
             else
             {
-                return Unauthorized(new { message = "Invalid email or password" });
+                return Unauthorized(new AuthResponse { Success = false, Message = "Invalid email or password" });
             }
         }
 
@@ -107,7 +155,7 @@ namespace UserService.API.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return Ok(new { message = "Successfully logged out" });
+            return Ok(new AuthResponse { Success = true, Message = "Successfully logged out" });
         }
 
         [HttpPost("forgot-password")]

@@ -5,6 +5,5 @@ namespace CountryService.API.Service
 {
 	public interface ICountryService : IGenericService<ViewCountryDto, CreateCountryDto, UpdateCountryDto>
 	{
-		Task<bool> DeleteAsync(Guid id, Guid modifiedBy);
 	}
 }

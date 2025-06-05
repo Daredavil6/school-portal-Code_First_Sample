@@ -31,18 +31,13 @@ namespace CountryService.API.Service
 
 		public async Task<bool> DeleteAsync(Guid id)
 		{
-			return await DeleteAsync(id, new Guid("368BD1DF-42D6-4F05-9CA0-8DF22191B917")); // Default system user
-		}
-
-		public async Task<bool> DeleteAsync(Guid id, Guid modifiedBy)
-		{
 			var country = await _countryRepository.GetByIdAsync(id);
 			if (country == null) return false;
 
 			country.IsDeleted = true;
 			country.IsActive = false;
 			country.ModifiedDate = DateTime.UtcNow;
-			country.ModifiedBy = modifiedBy;
+			country.ModifiedBy = country.ModifiedBy; // Use the ModifiedBy from the DTO
 			country.Status = EntityStatus.Deleted;
 			country.StatusMessage = "Country Deleted Successfully";
 
